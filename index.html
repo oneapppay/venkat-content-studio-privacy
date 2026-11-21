@@ -1,0 +1,72 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Privacy policy · Venkat Content Studio</title>
+    <style>
+      body { margin: 0; background: #07111f; color: #e7eef8; font-family: "IBM Plex Sans", "Segoe UI", sans-serif; }
+      main { max-width: 42rem; margin: 0 auto; padding: 2.5rem 1.25rem 4rem; }
+      h1 { font-size: 1.8rem; margin-bottom: 0.25rem; }
+      h2 { font-size: 1.1rem; margin-top: 1.75rem; }
+      p, li { line-height: 1.55; color: #c5d2e4; }
+      a { color: #7ef0ff; }
+    </style>
+  </head>
+  <body>
+    <main>
+      <h1>Privacy policy</h1>
+      <p>Venkat Yanapothula · Content Studio · November 20, 2026</p>
+      <p>
+        This policy describes the local Content Studio that signs in to LinkedIn and can publish posts for that one member.
+      </p>
+
+      <h2>Who operates it</h2>
+      <p>
+        Venkat Yanapothula operates the studio on his own computer. Questions about this policy can be sent to
+        <a href="mailto:ops.venkat@gmail.com">ops.venkat@gmail.com</a>.
+      </p>
+
+      <h2>LinkedIn permissions</h2>
+      <p>The LinkedIn sign-in request asks only for these permissions:</p>
+      <ul>
+        <li><code>openid</code> and <code>profile</code>, to identify the member who approves the connection.</li>
+        <li><code>w_member_social</code>, to create a post for that member.</li>
+      </ul>
+      <p>
+        The studio does not request an email address. It does not call LinkedIn comment, reaction, invitation, or message APIs.
+      </p>
+
+      <h2>Personal data</h2>
+      <p>
+        After approval, the studio reads the member id and display name from LinkedIn's user-info endpoint.
+        It also stores the access token LinkedIn returns, the token expiry, the granted scope, and a refresh token only when LinkedIn includes one.
+      </p>
+
+      <h2>Where tokens are stored</h2>
+      <p>
+        Tokens stay on the operator's computer in <code>data/connection.enc</code>, encrypted with AES-256-GCM.
+        The encryption key is the local <code>STUDIO_TOKEN_KEY</code> value or the local <code>data/token.key</code> file.
+        Tokens are not written into git, browser storage, or application logs. The client secret stays in the local <code>.env</code> file, which git ignores.
+      </p>
+
+      <h2>Publishing</h2>
+      <p>
+        A post is sent only for content prepared in this studio, and only after the member has connected the account.
+        The post can include text and an image. LinkedIn then handles that post under LinkedIn's own terms and privacy policy.
+        Automatic publishing of the other prepared technical posts stays off unless the operator turns that control on.
+      </p>
+
+      <h2>Disconnecting</h2>
+      <p>
+        Disconnect asks LinkedIn to revoke the token, deletes the encrypted connection file, and turns automatic publishing off.
+      </p>
+
+      <h2>Retention and sharing</h2>
+      <p>
+        The local connection remains until the operator disconnects or deletes the studio data directory.
+        The studio does not sell this data and does not send the token to another service.
+      </p>
+    </main>
+  </body>
+</html>
